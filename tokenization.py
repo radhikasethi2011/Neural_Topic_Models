@@ -10,7 +10,6 @@ import spacy
 
 LANG_CLS = defaultdict(lambda:"SpacyTokenizer")
 LANG_CLS.update({
-    "zh": "HanLPTokenizer",
     "en": "SpacyTokenizer",
 })
 
@@ -19,24 +18,6 @@ SPACY_MODEL = {
     "ja": "ja_core_news_sm"
 }
 
-
-class HanLPTokenizer(object):
-    def __init__(self, stopwords=None):
-        self.pat = re.compile(r'[0-9!"#$%&\'()*+,-./:;<=>?@—，。：★、￥…【】（）《》？“”‘’！\[\\\]^_`{|}~\u3000]+')
-        self.stopwords = stopwords
-        print("Using HanLP tokenizer")
-        
-    def tokenize(self, lines: List[str]) -> List[List[str]]:
-        docs = []
-        for line in tqdm(lines):
-            tokens = [t.word for t in HanLP.segment(line)]
-            tokens = [re.sub(self.pat, r'', t).strip() for t in tokens]
-            tokens = [t for t in tokens if t != '']
-            if self.stopwords is not None:
-                tokens = [t for t in tokens if not (t in self.stopwords)]
-            docs.append(tokens)
-        return docs
-        
         
 class SpacyTokenizer(object):
     def __init__(self, lang="en", stopwords=None):
@@ -53,4 +34,4 @@ class SpacyTokenizer(object):
 
 if __name__ == '__main__':
     tokenizer=SpacyTokenizer()
-    #print(tokenizer.tokenize(['他拿的是《红楼梦》？！我还以为他是个Foreigner———']))
+  
