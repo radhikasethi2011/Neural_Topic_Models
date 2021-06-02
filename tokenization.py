@@ -23,15 +23,16 @@ class SpacyTokenizer(object):
     def __init__(self, lang="en", stopwords=None):
         self.stopwords = stopwords
         self.nlp = spacy.load(SPACY_MODEL[lang], disable=['ner', 'parser'])
-        print("Using SpaCy tokenizer")
+        print("Using SpaCy tokenizer YES")
 
         
     def tokenize(self, lines: List[str]) -> List[List[str]]:
-        docs = self.nlp.pipe(lines, batch_size=1000, n_process=multiprocessing.cpu_count())
+        docs = self.nlp.pipe(lines, batch_size=500)
         docs = [[token.lemma_ for token in doc if not (token.is_stop or token.is_punct)] for doc in docs]
         return docs
         
 
 if __name__ == '__main__':
     tokenizer=SpacyTokenizer()
+    #print(tokenizer.tokenize('qwertyuiop./asdfghjkl@#$^&')
   
