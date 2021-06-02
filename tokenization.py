@@ -27,7 +27,7 @@ class SpacyTokenizer(object):
 
         
     def tokenize(self, lines: List[str]) -> List[List[str]]:
-        docs = self.nlp.pipe(lines, batch_size=500)
+        docs = self.nlp.pipe(lines, batch_size=500, n_process=multiprocessing.cpu_count())
         docs = [[token.lemma_ for token in doc if not (token.is_stop or token.is_punct)] for doc in docs]
         return docs
         
