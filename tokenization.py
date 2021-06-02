@@ -52,5 +52,5 @@ class SpacyTokenizer(object):
         
 
 if __name__ == '__main__':
-    tokenizer=HanLPTokenizer()
-    print(tokenizer.tokenize(['他拿的是《红楼梦》？！我还以为他是个Foreigner———']))
+    tokenizer=SpacyTokenizer()
+    #print(tokenizer.tokenize(['他拿的是《红楼梦》？！我还以为他是个Foreigner———']))
