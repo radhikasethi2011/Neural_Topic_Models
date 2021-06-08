@@ -50,7 +50,4 @@ class SpacyTokenizer(object):
         docs = [[token.lemma_ for token in doc if not (token.is_stop or token.is_punct)] for doc in docs]
         return docs
         
-
-if __name__ == '__main__':
-    tokenizer=HanLPTokenizer()
-    print(tokenizer.tokenize(['他拿的是《红楼梦》？！我还以为他是个Foreigner———']))
+    
