@@ -27,7 +27,7 @@ class HanLPTokenizer(object):
     def tokenize(self, lines: List[str]) -> List[List[str]]:
         docs = []
         for line in tqdm(lines):
-            tokens = [t.split(' ') for t in tokens]
+            tokens = [line.split(' ')]
             docs.append(tokens)
         return docs
         
