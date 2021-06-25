@@ -12,6 +12,7 @@ LANG_CLS = defaultdict(lambda:"SpacyTokenizer")
 LANG_CLS.update({
     "zh": "HanLPTokenizer",
     "en": "SpacyTokenizer",
+    "general": "GeneralTokenizer"
 })
 
 SPACY_MODEL = {
@@ -43,7 +44,6 @@ class SpacyTokenizer(object):
         self.stopwords = stopwords
         self.nlp = spacy.load(SPACY_MODEL[lang], disable=['ner', 'parser'])
         print("Using SpaCy tokenizer")
-
         
     def tokenize(self, lines: List[str]) -> List[List[str]]:
         docs = self.nlp.pipe(lines, batch_size=1000, n_process=multiprocessing.cpu_count())
@@ -51,6 +51,15 @@ class SpacyTokenizer(object):
         return docs
         
 
+class GeneralTokenizer(object):
+    def __init__(self, stopwords=None):
+        print("Using General Tokenizer")
+    
+    def tokenize(self, lines: List[str]) -> List[List[str]]:
+        docs=[line.split(" ") for line in lines]
+        return docs
+        
+    
 if __name__ == '__main__':
     tokenizer=HanLPTokenizer()
     print(tokenizer.tokenize(['他拿的是《红楼梦》？！我还以为他是个Foreigner———']))
