@@ -17,7 +17,7 @@ from sklearn.mixture import GaussianMixture
 
 # WAE model
 class WAE(nn.Module):
-    def __init__(self, encode_dims=[2000, 1024, 512, 20], decode_dims=[20, 1024, 2000], dropout=0.0, nonlin='relu'):
+    def __init__(self, encode_dims=[1024, 512, 20], decode_dims=[20, 512], dropout=0.0, nonlin='relu'):
         super(WAE, self).__init__()
         self.encoder = nn.ModuleDict({
             f'enc_{i}': nn.Linear(encode_dims[i], encode_dims[i+1])
