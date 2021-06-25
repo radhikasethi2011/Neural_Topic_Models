@@ -213,8 +213,8 @@ class WTM:
         self.wae.load_state_dict(model)
 
 if __name__ == '__main__':
-    model = WAE(encode_dims=[1024, 512, 256, 20],
-                decode_dims=[20, 128, 768, 1024])
+    model = WAE(encode_dims=[512, 256, 20],
+                decode_dims=[20, 128, 768])
     model = model.cuda()
     inpt = torch.randn(234, 1024).cuda()
     out, mu, log_var = model(inpt)
